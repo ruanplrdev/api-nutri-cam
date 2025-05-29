@@ -1,0 +1,31 @@
+{
+  "version": 2,
+  "name": "nutriscan",
+  "builds": [
+    {
+      "src": "server.js",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/alimento/(.*)",
+      "dest": "https://fdc.nal.usda.gov/api/$1",
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type, Authorization"
+      }
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/server.js"
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://fdc.nal.usda.gov/api/:path*"
+    }
+  ]
+}
