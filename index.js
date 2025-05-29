@@ -5,7 +5,13 @@ const axios = require('axios');
 const app = express();
 const PORT = 3000;
 const API_KEY = process.env.USDA_API_KEY;
-
+// Middleware para CORS
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*'); // Ou substitua * pelo domínio do seu frontend
+  res.header('Access-Control-Allow-Methods', 'GET');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
 app.get('/alimento/:nome', async (req, res) => {
   const nome = req.params.nome;
 
