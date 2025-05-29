@@ -2,29 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "index.html",
-      "use": "@vercel/static"
+      "src": "index.js",
+      "use": "@vercel/node"
     }
   ],
-  "rewrites": [
+  "routes": [
     {
-      "source": "/api/foods/search",
-      "destination": "https://api.nal.usda.gov/fdc/v1/foods/search?api_key=tcingrdUrJjLEjHsnEgYUMcV3eB5RuTyieTcnMKc"
-    }
-  ],
-  "headers": [
-    {
-      "source": "/api/foods/search",
-      "headers": [
-        {
-          "key": "Access-Control-Allow-Origin",
-          "value": "*"
-        },
-        {
-          "key": "Access-Control-Allow-Methods",
-          "value": "GET, OPTIONS"
-        }
-      ]
+      "src": "/(.*)",
+      "dest": "index.js"
     }
   ]
 }
