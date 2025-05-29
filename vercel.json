@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "name": "nutriscan",
   "builds": [
     {
       "src": "index.html",
@@ -9,17 +8,13 @@
   ],
   "rewrites": [
     {
-      "source": "/alimento/:path*",
-      "destination": "https://fdc.nal.usda.gov/api/:path*"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "source": "/api/foods/search",
+      "destination": "https://api.nal.usda.gov/fdc/v1/foods/search?api_key=:key"
     }
   ],
   "headers": [
     {
-      "source": "/alimento/:path*",
+      "source": "/api/foods/search",
       "headers": [
         {
           "key": "Access-Control-Allow-Origin",
@@ -28,10 +23,6 @@
         {
           "key": "Access-Control-Allow-Methods",
           "value": "GET, OPTIONS"
-        },
-        {
-          "key": "Access-Control-Allow-Headers",
-          "value": "Content-Type, Authorization"
         }
       ]
     }
